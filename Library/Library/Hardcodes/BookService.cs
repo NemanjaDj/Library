@@ -132,6 +132,10 @@ namespace Library.Hardcodes
 
         public List<Book> FindBookByName(string bookName)
         {
+            if (String.IsNullOrEmpty(bookName))
+            {
+                return bookRepository.ShowBooks().ToList();
+            }
             return bookRepository.FindBookByName(bookName);
         }
 

@@ -28,7 +28,7 @@ namespace Library.Controllers
         }
 
         [HttpPost]
-        public IActionResult Books(IFormCollection collection, string name)
+        public IActionResult FindBookByName(IFormCollection collection, string name)
         {
             if (ModelState.IsValid)
             {
