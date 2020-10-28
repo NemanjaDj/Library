@@ -17,6 +17,23 @@
     </form>
 </div>
 
+<div>
+    <form asp-controller="Book" asp-action="FindBooksByGenre">
+        @{
+            var categories = (List<Genre>)ViewData["Genres"]; // Cast the list
+            var genre = new Genre();
+            genre.GenreName = "ALL";
+            genre.GenreId = 0;
+            categories.Add(genre);
+        }
+        @foreach (var c in @categories) // Print the list
+        {
+            <a asp-controller="Book"
+            asp-action="FindBooksByGenre"
+            asp-route-genreId="@c.GenreId">@c.GenreName</a>
+        }
+    </form>
+</div>
 
 <div class="list-group">
     <ul style="list-style-type:none" class="list-group">

@@ -24,6 +24,7 @@ namespace Library.Controllers
         public IActionResult Books()
         {
             var books = bookService.ShowBooks();
+            ViewData["Genres"] = bookService.GetAllGenre();
             return View(books);
         }
 
@@ -33,6 +34,18 @@ namespace Library.Controllers
             if (ModelState.IsValid)
             {
                 var books = bookService.FindBookByName(name);
+                ViewData["Genres"] = bookService.GetAllGenre();
+                return View("Books", books);
+            }
+            return View();
+        }
+
+        public IActionResult FindBooksByGenre(int genreId)
+        {
+            if (ModelState.IsValid)
+            {
+                var books = bookService.FindBooksByGenre(genreId);
+                ViewData["Genres"] = bookService.GetAllGenre();
                 return View("Books", books);
             }
             return View();
@@ -80,7 +93,7 @@ namespace Library.Controllers
             }
         }
 
-            public IActionResult AddBook()
+        public IActionResult AddBook()
         {
             WritersAndGenres writersAndGenres = new WritersAndGenres();
             writersAndGenres.Genres = bookService.GetAllGenre();

@@ -102,5 +102,14 @@ namespace Library.Repository
             applicationDbContext.BookGenre.RemoveRange(bookGenres);
             applicationDbContext.SaveChanges();
         }
+
+        public List<Book> GetBooksByGenre(int genreId)
+        {
+            var books = from bg in applicationDbContext.BookGenre
+                        join b in applicationDbContext.Books on bg.BookId equals b.BookId
+                        where bg.GenreId == genreId
+                        select b;
+            return books.ToList();
+        }
     }
 }

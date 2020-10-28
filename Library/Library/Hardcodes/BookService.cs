@@ -189,5 +189,14 @@ namespace Library.Hardcodes
 
             return writergenres;
         }
+
+        public List<Book> FindBooksByGenre(int genreId)
+        {
+            if(genreId == 0)
+            {
+                return bookRepository.ShowBooks().ToList();
+            }
+            return bookRepository.GetBooksByGenre(genreId);
+        }
     }
 }

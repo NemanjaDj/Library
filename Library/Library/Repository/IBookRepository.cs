@@ -32,5 +32,6 @@ namespace Library.Repository
         void UpdateBook(Book book);
 
         void DeleteBookGenres(int bookId);
+        List<Book> GetBooksByGenre(int genreId);
     }
 }
