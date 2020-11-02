@@ -27,6 +27,10 @@
                         }
                     </p>
                     <br />
+                    <a asp-controller="User"
+                       asp-action="AddBookForUser"
+                       asp-route-id="@Model.Book.BookId">Add to cart</a>
+                    <br />
                     @Model.Book.Description
                 </td>
             </tr>

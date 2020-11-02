@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace Library.Repository
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
+        void AddBookForUser(string userId, int bookId);
+        List<int> GetUserBooks(string userId);
     }
 }

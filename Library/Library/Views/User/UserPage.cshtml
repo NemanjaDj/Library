@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "UserPage";
+}
+
+<h2>UserPage</h2>
+<a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Edit</a>
+
+@{ var books = (List<Book>)ViewData["Books"]; }
+
+@foreach (var item in books)
+{
+    @Html.ActionLink(@item.BookName, "BookTemplate", "Book", new { id = item.BookId }, new { @class = "list-group-item list-group-item-action list-group-item-dark" })
+}
+

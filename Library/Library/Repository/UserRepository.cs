@@ -1,11 +1,33 @@
-﻿using System;
+﻿using Library.Data;
+using Library.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Library.Repository
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
+        public ApplicationDbContext applicationDbContext;
+
+        public UserRepository(ApplicationDbContext applicationDbContext)
+        {
+            this.applicationDbContext = applicationDbContext;
+        }
+
+        public void AddBookForUser(string userId, int bookId)
+        {
+            var bookRent = new BookRent();
+            bookRent.BookId = bookId;
+            bookRent.UserId = userId;
+            applicationDbContext.Add(bookRent);
+            applicationDbContext.SaveChanges();
+        }
+
+        public List<int> GetUserBooks(string userId)
+        {
+            return applicationDbContext.BookRents.Where(br => br.UserId == userId).Select(br => br.BookId).ToList();
+        }
     }
 }
