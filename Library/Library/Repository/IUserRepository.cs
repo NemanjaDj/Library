@@ -9,5 +9,6 @@ namespace Library.Repository
     {
         void AddBookForUser(string userId, int bookId);
         List<int> GetUserBooks(string userId);
+        void RateBook(string userId, int bookId, int rate);
     }
 }

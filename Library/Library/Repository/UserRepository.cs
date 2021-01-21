@@ -29,5 +29,15 @@ namespace Library.Repository
         {
             return applicationDbContext.BookRents.Where(br => br.UserId == userId).Select(br => br.BookId).ToList();
         }
+
+        public void RateBook(string userId, int bookId, int rate)
+        {
+            var bookRateByUser = new Rating();
+            bookRateByUser.UserId = userId;
+            bookRateByUser.BookId = bookId;
+            bookRateByUser.rate = rate;
+            applicationDbContext.Add(bookRateByUser);
+            applicationDbContext.SaveChanges();
+        }
     }
 }

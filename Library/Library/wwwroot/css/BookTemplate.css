@@ -49,3 +49,54 @@ img {
     font-style: italic;
     color: dimgrey;
 }
+
+/* rating stars */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+
+    .rate:not(:checked) > a {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .rate:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+    .rate > a:checked ~ label {
+        color: #ffc700;
+    }
+
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+
+    .rate > a:checked + label:hover,
+    .rate > a:checked + label:hover ~ label,
+    .rate > a:checked ~ label:hover,
+    .rate > a:checked ~ label:hover ~ label,
+    .rate > label:hover ~ a:checked ~ label {
+        color: #c59b08;
+    }
+
+/* end rating stars*/

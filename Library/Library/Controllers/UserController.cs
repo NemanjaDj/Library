@@ -34,10 +34,15 @@ namespace Library.Controllers
 
         public IActionResult AddBookForUser(int id)
         {
-            var userId = _userManager.GetUserId(HttpContext.User);
-            userService.AddBookForUser(userId, id);
+            userService.AddBookForUser(_userManager.GetUserId(HttpContext.User), id);
             var bookrender = bookService.RenderBook(id);
             return RedirectToAction("BookTemplate", "Book", new { id = id });
+        }
+
+        public IActionResult RateBook(int Id, int rate)
+        {
+            userService.RateBook(_userManager.GetUserId(HttpContext.User), Id, rate);
+            return RedirectToAction("BookTemplate", "Book", new { id = Id });
         }
     }
 }

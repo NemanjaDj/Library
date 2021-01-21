@@ -24,5 +24,10 @@ namespace Library.Hardcodes
             }
             return books;
         }
+
+        public void RateBook(string userId, int bookId, int rate)
+        {
+            userRepository.RateBook(userId, bookId, rate);
+        }
     }
 }
